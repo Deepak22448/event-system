@@ -7,7 +7,6 @@ const Home = () => {
   return (
     <>
       <section className="home h-screen min-w-full backdrop-blur-sm bg-transparent">
-        <Navbar />
         <div className="flex justify-center items-center h-full text-gray-100 px-5 text-lg md:text-xl">
           <div className="space-y-4 md:text-center">
             <h2 className="text-2xl md:text-5xl font-bold tracking-wide text-white capitalize">

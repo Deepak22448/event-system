@@ -19,7 +19,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${space_grotesk.className}`}>
-        {children}
+        <Navbar />
+        <main>{children}</main>
         <Footer />
       </body>
     </html>

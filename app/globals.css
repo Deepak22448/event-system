@@ -7,3 +7,7 @@ section.home {
   background-size: cover;
   background-blend-mode: multiply;
 }
+
+main > section {
+  padding-top: 4rem;
+}
