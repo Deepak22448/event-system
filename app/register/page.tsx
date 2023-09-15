@@ -8,7 +8,9 @@ const Register = () => {
     <section className="h-screen md:flex">
       <article className="md:w-3/5 flex justify-center items-center h-full">
         <form className="w-full px-10 space-y-4">
-          <h1 className="text-center text-3xl">Create an account Now</h1>
+          <h1 className="text-center text-xl md:text-3xl">
+            Create an account Now
+          </h1>
           <Input
             name="email"
             type="email"
