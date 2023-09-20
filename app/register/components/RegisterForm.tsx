@@ -1,11 +1,13 @@
 "use client";
 
-import React, { FormEvent, createRef, useState } from "react";
+import React from "react";
 import Input from "./Input";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import { CREDENTIALS_PROVIDER_NAME } from "@/app/api/auth/[...nextauth]/authOptions";
+import { signIn } from "next-auth/react";
 
 interface IFormValues {
   name: string;
@@ -22,28 +24,37 @@ const RegisterForm = () => {
 
   const handleRegister = async ({ password, name, email }: IFormValues) => {
     try {
-      const res = await fetch("/api/register", {
+      const registerRes = await fetch("/api/register", {
         method: "POST",
         body: JSON.stringify({ name, email, password }),
-        cache: "no-cache",
+        cache: "no-store",
       });
 
-      if (!res.ok) {
-        const error = await res.json();
-        toast.error(error.message, {
-          position: toast.POSITION.TOP_RIGHT,
-          toastId: error.message,
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-        });
-        return;
+      if (!registerRes.ok) {
+        const error = await registerRes.json();
+        throw new Error(error.message);
       }
+
+      const signInResponse = await signIn(
+        CREDENTIALS_PROVIDER_NAME.toLowerCase(),
+        {
+          email,
+          password,
+          redirect: false,
+        }
+      );
+
+      if (signInResponse?.error) {
+        const errorMessage = signInResponse.error;
+        throw new Error(errorMessage);
+      }
+
       router.push("/");
     } catch (error: any) {
-      console.log(error.message);
+      toast.error(error.message, {
+        position: toast.POSITION.TOP_RIGHT,
+        toastId: error.message,
+      });
     }
   };
 

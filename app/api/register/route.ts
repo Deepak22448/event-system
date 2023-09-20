@@ -1,6 +1,6 @@
 import { prisma } from "@/prisma/db";
 import { NextResponse } from "next/server";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 
 interface IBody {
   name: string;
@@ -12,6 +12,13 @@ export const POST = async (request: Request) => {
 
   try {
     const { name, email, password }: IBody = await request.json();
+
+    const userExist = await prisma.user.findUnique({ where: { email } });
+
+    if (userExist) {
+      throw new Error("User alread exist.", { cause: { email } });
+    }
+
     const hashedPassword = await bcrypt.hash(password, bcryptSalt);
 
     await prisma.user.create({
@@ -31,10 +38,13 @@ export const POST = async (request: Request) => {
       return new Response(JSON.stringify({ message: "Email already exist" }), {
         status: 400,
       });
+    } else if (error.message === "User alread exist.") {
+      return new Response(JSON.stringify({ message: error.message }), {
+        status: 409,
+      });
     }
-
     // default error response.
-    return new Response("Internal Server Error", {
+    return new Response(JSON.stringify({ message: "Internal Server Error" }), {
       status: 500,
     });
   }

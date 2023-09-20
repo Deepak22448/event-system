@@ -1,7 +1,10 @@
+import { getServerSession } from "next-auth";
 import Link from "next/link";
 import React from "react";
 
-const Navbar = () => {
+const Navbar = async () => {
+  const session = await getServerSession();
+
   return (
     <header className="h-16 flex w-full  items-center  px-4 text-orange-400 backdrop-blur-md fixed z-10 top-0  border-b border-b-orange-300">
       <nav className="flex w-full justify-between">
