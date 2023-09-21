@@ -1,7 +1,7 @@
 "use client";
 
 import { CREDENTIALS_PROVIDER_NAME } from "@/app/api/auth/[...nextauth]/authOptions";
-import Input from "@/app/register/components/Input";
+import Input from "@/app/(no-auth)/register/components/Input";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
