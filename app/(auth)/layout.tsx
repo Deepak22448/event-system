@@ -10,5 +10,5 @@ export default async function AuthLayout({
   const session = await getServerSession(authOptions);
 
   if (!session) redirect("/login");
-  return <>{children}</>;
+  return <section className="px-5">{children}</section>;
 }
