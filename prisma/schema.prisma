@@ -21,23 +21,37 @@ model Account {
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String? @db.String
-  session_state     String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
   @@map("accounts")
 }
 
 model User {
-  id            String    @id @default(auto()) @map("_id") @db.ObjectId
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime? @map("email_verified")
-  image         String    @default("/images/empty_avatar.jpeg")
-  password      String?
-  accounts      Account[]
+  id                String    @id @default(auto()) @map("_id") @db.ObjectId
+  name              String?
+  email             String?   @unique
+  image             String    @default("/images/empty_avatar.jpeg")
+  password          String?
+  accounts          Account[]
+  attendedEvents    Event[]   @relation(fields: [attendedEventsIds], references: [id], name: "attende")
+  attendedEventsIds String[]  @db.ObjectId
+  createdEvents     Event[]
 
   @@map("users")
+}
+
+model Event {
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  title            String
+  date             String
+  time             String
+  venu             String
+  eventDescription String?
+  attendees        User[]   @relation(fields: [attendeesIds], references: [id], name: "attende")
+  attendeesIds     String[] @db.ObjectId
+  creator          User     @relation(fields: [creatorId], references: [id])
+  creatorId        String   @db.ObjectId
+
+  @@map("events")
 }
