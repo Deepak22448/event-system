@@ -1,4 +1,4 @@
-import { ICreateEvent } from "@/app/(auth)/create/event/components/CreateEventForm";
+import { ICreateEvent } from "@/app/(auth)/event/create/components/CreateEventForm";
 import { prisma } from "@/prisma/db";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../auth/[...nextauth]/authOptions";

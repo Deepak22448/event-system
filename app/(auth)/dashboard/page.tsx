@@ -13,7 +13,7 @@ const Dashboard = async () => {
         />
         <figcaption>You have no existing event tickets.</figcaption>
         <Link
-          href="/create/event"
+          href="/event/create"
           className="bg-orange-400 p-4 rounded text-xl hover:bg-orange-300"
         >
           Create an event ticket
