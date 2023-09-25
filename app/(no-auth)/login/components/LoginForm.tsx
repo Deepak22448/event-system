@@ -32,7 +32,7 @@ const LoginForm = () => {
         const errorMessage = response.error;
         throw new Error(errorMessage);
       }
-      router.push("/sample");
+      router.push("/dashboard");
     } catch (error: any) {
       toast.error(error.message, {
         position: toast.POSITION.TOP_RIGHT,
