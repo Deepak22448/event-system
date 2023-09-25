@@ -11,3 +11,11 @@ section.home {
 main > section {
   padding-top: 4rem;
 }
+
+.event-details-img {
+  background: url(/images/hero-bg.jpg) no-repeat center center;
+  background-size: cover;
+  background-blend-mode: multiply;
+  height: 300px;
+  width: auto;
+}
