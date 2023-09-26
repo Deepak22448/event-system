@@ -1,24 +1,39 @@
-import Image from "next/image";
+import { prisma } from "@/prisma/db";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
+
+import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
+import EmptyDashboard from "./components/EmptyDashboard";
+import DashboardCard from "./components/DashboardCard";
 import Link from "next/link";
 
 const Dashboard = async () => {
+  const session = await getServerSession(authOptions);
+  if (!session?.user) {
+    return redirect("/login");
+  }
+
+  const events = await prisma.event.findMany({
+    where: {
+      creatorId: session.user.id,
+    },
+  });
+
+  if (events.length === 0) return <EmptyDashboard />;
+
   return (
-    <section className="relative min-h-screen">
-      <figure className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 flex justify-center items-center flex-col space-y-3">
-        <Image
-          src={"/images/dashboard.svg"}
-          width={300}
-          height={300}
-          alt="ilstrations with baloon"
-        />
-        <figcaption>You have no existing event tickets.</figcaption>
-        <Link
-          href="/event/create"
-          className="bg-orange-400 p-4 rounded text-xl hover:bg-orange-300"
-        >
-          Create an event ticket
-        </Link>
-      </figure>
+    <section className="my-2 w-full flex flex-col">
+      <Link
+        href="/event/create"
+        className="bg-orange-400 hover:bg-orange-300 p-3 text-white rounded inline-block mx-auto shadow-xl mb-4 self-center"
+      >
+        Create an event ticket
+      </Link>
+      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 min-h-screen">
+        {events.map((event) => (
+          <DashboardCard key={event.id} event={event} />
+        ))}
+      </ul>
     </section>
   );
 };
