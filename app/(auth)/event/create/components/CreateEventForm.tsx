@@ -1,5 +1,6 @@
 "use client";
 import Input from "@/app/(no-auth)/register/components/Input";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
@@ -18,6 +19,7 @@ const CreateEventForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<ICreateEvent>();
+  const router = useRouter();
 
   const handleCreateEvent = async (data: ICreateEvent) => {
     try {
@@ -30,6 +32,7 @@ const CreateEventForm = () => {
       });
 
       toast.success("Event created");
+      router.push("/dashboard");
     } catch (error: any) {
       toast.error(error.message);
     }
