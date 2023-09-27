@@ -22,14 +22,14 @@ const Dashboard = async () => {
   if (events.length === 0) return <EmptyDashboard />;
 
   return (
-    <section className="my-2 w-full flex flex-col">
+    <section className="my-2 w-full flex flex-col min-h-screen">
       <Link
         href="/event/create"
         className="bg-orange-400 hover:bg-orange-300 p-3 text-white rounded inline-block mx-auto shadow-xl mb-4 self-center"
       >
         Create an event ticket
       </Link>
-      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 min-h-screen">
+      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 sm:space-x-2 md:space-x-3 gap-y-4">
         {events.map((event) => (
           <DashboardCard key={event.id} event={event} />
         ))}
