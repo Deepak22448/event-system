@@ -33,7 +33,7 @@ const CreateEventForm = () => {
 
       toast.success("Event created");
       router.push("/dashboard");
-      // router.refresh();
+      router.refresh();
     } catch (error: any) {
       toast.error(error.message);
     }
