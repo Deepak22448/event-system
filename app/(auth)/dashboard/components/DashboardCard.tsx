@@ -1,4 +1,4 @@
-import { Prisma } from "@prisma/client";
+import { Prisma } from "@/prisma/db";
 import Link from "next/link";
 import { FC } from "react";
 import { Icon } from "./Icon";
