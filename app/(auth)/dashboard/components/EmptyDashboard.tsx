@@ -6,7 +6,7 @@ const EmptyDashboard = () => {
     <section className="relative min-h-screen">
       <figure className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 flex justify-center items-center flex-col space-y-3">
         <Image
-          src={"/images/dashboard.svg"}
+          src={"/Images/dashboard.svg"}
           width={300}
           height={300}
           alt="ilstrations with baloon"

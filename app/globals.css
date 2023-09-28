@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 section.home {
-  background: url(/images/hero-bg.jpg) no-repeat center center;
+  background: url(/Images/hero-bg.jpg) no-repeat center center;
   background-size: cover;
   background-blend-mode: multiply;
 }
@@ -13,7 +13,7 @@ main > section {
 }
 
 .event-details-img {
-  background: url(/images/hero-bg.jpg) no-repeat center center;
+  background: url(/Images/hero-bg.jpg) no-repeat center center;
   background-size: cover;
   background-blend-mode: multiply;
   height: 300px;

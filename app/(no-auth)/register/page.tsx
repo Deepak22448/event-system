@@ -9,7 +9,7 @@ const Register = () => {
       </article>
       <figure className="relative hidden md:w-2/5 md:block h-full">
         <Image
-          src="/images/register-bg.jpg"
+          src="/Images/register-bg.jpg"
           alt="people in sitting"
           fill
           className="absolute inset-0 object-cover"

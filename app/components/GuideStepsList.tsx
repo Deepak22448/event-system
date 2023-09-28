@@ -12,17 +12,17 @@ const steps: IGuidStep[] = [
   {
     title: "Create an account",
     desc: "It is quick and hassle-free – get started in just a few simple steps!",
-    imgUrl: "/images/guide_step_1.svg",
+    imgUrl: "/Images/guide_step_1.svg",
   },
   {
     title: "Add an upcoming event",
     desc: "Create and manage your memorable events using EvenTiz sldfjsldfj kdflsjdf sdlfksj ldfksj lfksj lfjs kdfjs lf slkd ",
-    imgUrl: "/images/guide_step_2.svg",
+    imgUrl: "/Images/guide_step_2.svg",
   },
   {
     title: "Share your events",
     desc: "Share your ticketing link with friends, they register and get their tickets, and you manage attendees.",
-    imgUrl: "/images/guide_step_3.svg",
+    imgUrl: "/Images/guide_step_3.svg",
   },
 ];
 const GuideStepsList = () => {
