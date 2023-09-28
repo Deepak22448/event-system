@@ -2,8 +2,11 @@ import React from "react";
 import Navbar from "./components/Navbar";
 import Link from "next/link";
 import Guide from "./components/Guide";
+import { getServerSession } from "next-auth";
+import { authOptions } from "./api/auth/[...nextauth]/authOptions";
 
-const Home = () => {
+const Home = async () => {
+  const session = await getServerSession(authOptions);
   return (
     <>
       <section className="home h-screen min-w-full backdrop-blur-sm bg-transparent">
@@ -19,7 +22,10 @@ const Home = () => {
               events, we&lsquo;ve got you covered.
             </p>
             <p>Don&lsquo;t miss out on the memories - grab your tickets now!</p>
-            <Link href="/register" className="block">
+            <Link
+              href={session?.user ? "/dashboard" : "/register"}
+              className="block"
+            >
               <button className="p-4 bg-white text-orange-400 font-bold rounded">
                 CREATE YOUR EVENT TICKETS
               </button>
